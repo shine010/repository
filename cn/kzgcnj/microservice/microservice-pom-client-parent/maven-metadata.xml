@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>cn.kzgcnj.microservice</groupId>
+  <artifactId>microservice-pom-client-parent</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190818061046</lastUpdated>
+  </versioning>
+</metadata>

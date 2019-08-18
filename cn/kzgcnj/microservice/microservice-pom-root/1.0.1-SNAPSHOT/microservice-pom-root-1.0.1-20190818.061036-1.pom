@@ -1,0 +1,238 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.kzgcnj.microservice</groupId>
+	<artifactId>microservice-pom-root</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- plugin -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!--<checkstyle.config.location>http://repos.chime.me/nexus/service/local/repositories/thirdparty/content/com/homethy/google_checks/1.0.0/google_checks-1.0.0.xml</checkstyle.config.location>-->
+		<!-- org.springframework -->
+		<spring-boot-starter-parent.version>2.0.4.RELEASE</spring-boot-starter-parent.version>
+		<spring-cloud-dependencies.version>Finchley.SR1</spring-cloud-dependencies.version>
+		<spring-cloud-starter-kubernetes.version>0.3.0.RELEASE</spring-cloud-starter-kubernetes.version>
+		<!-- microservice -->
+		<microservice-autoconfiguration.version>1.0.1-SNAPSHOT</microservice-autoconfiguration.version>
+		<microservice-exception.version>1.0.1-SNAPSHOT</microservice-exception.version>
+		<infrastructure-cloudwatch.version>1.0.1-SNAPSHOT</infrastructure-cloudwatch.version>
+		<!-- other -->
+		<!-- <logback.access.spring.boot.starter.version>2.5.0</logback.access.spring.boot.starter.version> -->
+		<logback.access.spring.boot.starter.version>2.7.1</logback.access.spring.boot.starter.version>
+		<springfox.swagger2.version>2.7.0</springfox.swagger2.version>
+		<mybatis-spring-boot.version>1.3.1</mybatis-spring-boot.version>
+		<xxl-job.version>2.0.1</xxl-job.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-parent</artifactId>
+				<version>${spring-boot-starter-parent.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>cn.kzgcnj.microservice</groupId>
+				<artifactId>microservice-exception-client</artifactId>
+				<version>${microservice-exception.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.kzgcnj.microservice</groupId>
+				<artifactId>microservice-exception-server</artifactId>
+				<version>${microservice-exception.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.kzgcnj.microservice</groupId>
+				<artifactId>microservice-autoconfiguration</artifactId>
+				<version>${microservice-autoconfiguration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.rakugakibox.spring.boot</groupId>
+				<artifactId>logback-access-spring-boot-starter</artifactId>
+				<version>${logback.access.spring.boot.starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox.swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox.swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-kubernetes</artifactId>
+				<version>${spring-cloud-starter-kubernetes.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot</artifactId>
+				<version>${mybatis-spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.prometheus</groupId>
+				<artifactId>simpleclient_spring_boot</artifactId>
+				<version>${simpleclient_spring_boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.prometheus</groupId>
+				<artifactId>simpleclient_dropwizard</artifactId>
+				<version>${simpleclient_dropwizard.version}</version>
+			</dependency>
+	        <dependency>
+	            <groupId>com.xuxueli</groupId>
+	            <artifactId>xxl-job-core</artifactId>
+				<version>${xxl-job.version}</version>
+	        </dependency>
+			<dependency>
+				<groupId>com.puppycrawl.tools</groupId>
+				<artifactId>checkstyle</artifactId>
+				<version>7.3</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<verbose>true</verbose>
+						<encoding>UTF-8</encoding>
+						<parameters>true</parameters>
+						<compilerArguments>
+							<parameters />
+							<sourcepath>${project.build.sourceDirectory}</sourcepath>
+						</compilerArguments>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.8</version>
+					<executions>
+						<execution>
+							<id>jacoco-initialize</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>jacoco-site</id>
+							<phase>package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>2.17</version>
+					<!--<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>7.3</version>
+						</dependency>
+					</dependencies>-->
+					<executions>
+						<execution>
+							<id>validate</id>
+							<phase>validate</phase>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<consoleOutput>true</consoleOutput>
+								<logViolationsToConsole>true</logViolationsToConsole>
+								<failsOnError>true</failsOnError>
+								<linkXRef>false</linkXRef>
+							</configuration>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>3.0.4</version>
+					<configuration>
+						<!-- Enables analysis which takes more memory but finds more bugs. 
+							If you run out of memory, changes the value of the effort element to 'Low'. -->
+						<effort>Max</effort>
+						<!-- Reports all bugs (other values are medium and max) -->
+						<threshold>Low</threshold>
+						<!-- Produces XML report -->
+						<xmlOutput>true</xmlOutput>
+						<!-- Configures the directory in which the XML report is created -->
+						<findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
+					</configuration>
+					<executions>
+						<!-- Ensures that FindBugs inspects source code when project is compiled. -->
+						<execution>
+							<id>analyze-compile</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<!-- 两个ID必须与 setting.xml中的<server><id>nexus-releases</id></server>保持一致 -->
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.8.211:8081/repository/maven-public/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://192.168.8.211:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

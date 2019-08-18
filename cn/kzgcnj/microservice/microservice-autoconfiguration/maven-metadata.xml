@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>cn.kzgcnj.microservice</groupId>
+  <artifactId>microservice-autoconfiguration</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190818061050</lastUpdated>
+  </versioning>
+</metadata>

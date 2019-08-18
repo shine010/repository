@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>cn.kzgcnj.microservice</groupId>
+  <artifactId>microservice-pom-root</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190818.061036</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20190818061036</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.1-20190818.061036-1</value>
+        <updated>20190818061036</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
